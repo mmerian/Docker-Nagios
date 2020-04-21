@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM debian:buster-slim
 MAINTAINER Jason Rivers <jason@jasonrivers.co.uk>
 
 ENV NAGIOS_HOME            /opt/nagios
@@ -18,16 +18,18 @@ ENV NG_CGI_DIR             ${NAGIOS_HOME}/sbin
 ENV NG_WWW_DIR             ${NAGIOS_HOME}/share/nagiosgraph
 ENV NG_CGI_URL             /cgi-bin
 ENV NAGIOS_BRANCH          nagios-4.4.6
-ENV NAGIOS_PLUGINS_BRANCH  release-2.2.1
+ENV NAGIOS_PLUGINS_BRANCH  release-2.3.3
 ENV NRPE_BRANCH            nrpe-3.2.1
 ENV MK_LIVESTATUS_VERSION  1.2.8p18
 ENV NSCA_TAG               nsca-2.10.0
 
+# For snmp-mibs-downloader
+RUN echo "deb http://deb.debian.org/debian buster non-free" > /etc/apt/sources.list.d/non-free.list
 
 RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set-selections  && \
     echo postfix postfix/mynetworks string "127.0.0.0/8" | debconf-set-selections            && \
     echo postfix postfix/mailname string ${NAGIOS_FQDN} | debconf-set-selections             && \
-    apt-get update && apt-get install -y    \
+    apt-get update && apt-get install --no-install-recommends -y    \
         apache2                             \
         apache2-utils                       \
         autoconf                            \
@@ -48,19 +50,19 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         libdbd-mysql-perl                   \
         libdbi-dev                          \
         libdbi-perl                         \
-        libfreeradius-client-dev            \
-        libgd2-xpm-dev                      \
+        libgd-dev                           \
         libgd-gd2-perl                      \
         libjson-perl                        \
         libldap2-dev                        \
-        libmysqlclient-dev                  \
+        libmariadbclient-dev-compat         \
+        libmonitoring-plugin-perl           \
         libnagios-object-perl               \
-        libnagios-plugin-perl               \
         libnet-snmp-perl                    \
         libnet-snmp-perl                    \
         libnet-tftp-perl                    \
         libnet-xmpp-perl                    \
         libpq-dev                           \
+        libradcli-dev                       \
         libredis-perl                       \
         librrds-perl                        \
         libssl-dev                          \
