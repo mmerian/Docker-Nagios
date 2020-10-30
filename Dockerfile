@@ -47,6 +47,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         libapache2-mod-php                  \
         libcache-memcached-perl             \
         libcgi-pm-perl                      \
+        libcrypt-x509-perl                  \
         libdbd-mysql-perl                   \
         libdbi-dev                          \
         libdbi-perl                         \
@@ -65,6 +66,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         libradcli-dev                       \
         libredis-perl                       \
         librrds-perl                        \
+        libtext-glob-perl                   \
         libssl-dev                          \
         libswitch-perl                      \
         libwww-perl                         \
