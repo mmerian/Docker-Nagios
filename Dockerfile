@@ -76,7 +76,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         php-cli                             \
         php-gd                              \
         postfix                             \
-        python-pip                          \
+        python3-pip                          \
         rsyslog                             \
         runit                               \
         smbclient                           \
@@ -184,7 +184,7 @@ RUN cd /tmp                                                 && \
     cd /tmp && rm -Rf nsca
 
 RUN cd /opt                                                                         && \
-    pip install pymssql                                                             && \
+    pip3 install pymssql                                                             && \
     git clone https://github.com/willixix/naglio-plugins.git     WL-Nagios-Plugins  && \
     git clone https://github.com/JasonRivers/nagios-plugins.git  JR-Nagios-Plugins  && \
     git clone https://github.com/justintime/nagios-plugins.git   JE-Nagios-Plugins  && \
