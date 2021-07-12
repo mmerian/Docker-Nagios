@@ -19,8 +19,8 @@ ENV NG_WWW_DIR             ${NAGIOS_HOME}/share/nagiosgraph
 ENV NG_CGI_URL             /cgi-bin
 ENV NAGIOS_BRANCH          nagios-4.4.6
 ENV NAGIOS_PLUGINS_BRANCH  release-2.3.3
-ENV NRPE_BRANCH            nrpe-3.2.1
-ENV MK_LIVESTATUS_VERSION  1.2.8p18
+ENV NRPE_BRANCH            nrpe-4.0.3
+ENV MK_LIVESTATUS_VERSION  1.4.0p37
 ENV NSCA_TAG               nsca-2.10.0
 
 # For snmp-mibs-downloader
@@ -45,6 +45,8 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         iputils-ping                        \
         jq                                  \
         libapache2-mod-php                  \
+        libboost-dev                        \
+        libboost-system-dev                 \
         libcache-memcached-perl             \
         libcgi-pm-perl                      \
         libcrypt-x509-perl                  \
@@ -65,6 +67,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         libpq-dev                           \
         libradcli-dev                       \
         libredis-perl                       \
+        librrd-dev                          \
         librrds-perl                        \
         libtext-glob-perl                   \
         libssl-dev                          \
@@ -76,7 +79,7 @@ RUN echo postfix postfix/main_mailer_type string "'Internet Site'" | debconf-set
         php-cli                             \
         php-gd                              \
         postfix                             \
-        python3-pip                          \
+        python3-pip                         \
         rsyslog                             \
         runit                               \
         smbclient                           \
@@ -196,7 +199,7 @@ RUN cd /opt                                                                     
     cp /opt/nagios-mssql/check_mssql_server.py ${NAGIOS_HOME}/libexec/
 
 RUN cd /tmp                                                                                && \
-    wget https://mathias-kettner.de/download/mk-livestatus-${MK_LIVESTATUS_VERSION}.tar.gz && \
+    wget https://download.checkmk.com/checkmk/${MK_LIVESTATUS_VERSION}/mk-livestatus-${MK_LIVESTATUS_VERSION}.tar.gz && \
     tar zxf mk-livestatus-${MK_LIVESTATUS_VERSION}.tar.gz                                  && \
     cd mk-livestatus-${MK_LIVESTATUS_VERSION}                                              && \
     ./configure --with-nagios4                                                             && \
