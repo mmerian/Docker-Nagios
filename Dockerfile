@@ -20,7 +20,7 @@ ENV NG_CGI_URL             /cgi-bin
 ENV NAGIOS_BRANCH          nagios-4.4.6
 ENV NAGIOS_PLUGINS_BRANCH  release-2.3.3
 ENV NRPE_BRANCH            nrpe-4.0.3
-ENV MK_LIVESTATUS_VERSION  1.4.0p37
+ENV MK_LIVESTATUS_VERSION  1.5.0p24
 ENV NSCA_TAG               nsca-2.10.0
 
 # For snmp-mibs-downloader
